@@ -12,7 +12,7 @@ Make sure you also have your chromedriver executable in this folder.
 ```
 python main.py <pornhub-channel-url>
 ```
-This will fetch a list of every single video on the channe;
+This will fetch a list of every single video on the channel
 
 ### How to download single video
 Open a python shell from the cloned directory
