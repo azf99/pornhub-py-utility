@@ -10,9 +10,24 @@ Make sure you also have your chromedriver executable in this folder.
 
 ## Run
 ```
-python main.py <pornhub-url>
+python main.py <pornhub-channel-url>
+```
+This will fetch a list of every single video on the channe;
+
+### How to download single video
+Open a python shell from the cloned directory
+```
+from downloaders.downloadmanager import DownloadManager
+
+man = DownloadManager(save_path = "<path-to-save-folder>")
+man.download(link = "<video-link>")
 ```
 
-# TODO
+## Features
+- get links of all videos from a channel page
+- download videos directly from the link
+
+## TODO
 - support for recognizing different link types(channels, playlists, etc.)
-- Download the videos on disk
+- Add multiple downloaders
+- support for parallel file download

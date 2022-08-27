@@ -20,3 +20,8 @@ print(links)
 print("{} videos found".format(len(links)))
 
 driver.quit()
+
+from downloaders.downloadmanager import DownloadManager
+
+man = DownloadManager()
+man.download(links[0])
