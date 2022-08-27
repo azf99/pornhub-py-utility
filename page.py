@@ -8,6 +8,7 @@ class Page(object):
         self.pageNum = pageNum
         self.maxPages = maxPages
         self.links = []
+        self.channel_name = self.url.split("/")[-1].strip("/")
 
     def get_links_from_page(self):
         elems = self.driver.find_elements_by_xpath("//a[@href]")
@@ -30,4 +31,10 @@ class Page(object):
             self.get_links_from_page()
         df = pd.Series(self.links)
         self.links = df.drop_duplicates().tolist()
+        print("{} videos found".format(len(self.links)))
+
+        out_text = "\n".join(self.links)
+
+        with open(self.channel_name + ".txt", "w") as outfile:
+            outfile.write(out_text)
         return self.links
