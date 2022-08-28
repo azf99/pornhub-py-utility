@@ -12,10 +12,6 @@ class Page(object):
         self.type = Validator(self.URL).run()
         self.channel_name = self.URL.split("/")[-1].strip("/")
 
-        if self.type != "pornstar":
-            print("This is not a pornstar url. Currently only pornstar links are supported.")
-            sys.exit()
-
     def get_links_from_page(self):
         elems = self.driver.find_elements_by_xpath("//a[@href]")
         for elem in elems:
