@@ -18,10 +18,12 @@ page = Page(URL, driver, pageNum, maxPages)
 links = page.get_all_links()
 print(links)
 print("{} videos found".format(len(links)))
-
 driver.quit()
+page.download_videos()
 
-from downloaders.downloadmanager import DownloadManager
 
-man = DownloadManager(quality = "480")
-man.download(links[0])
+
+# from downloaders.downloadmanager import DownloadManager
+
+# man = DownloadManager(quality = "480")
+# man.download(links[0])

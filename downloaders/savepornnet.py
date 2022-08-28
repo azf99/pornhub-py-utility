@@ -6,7 +6,6 @@ import config
 class SavePornNet(object):
     def __init__(self, quality = config.DEFAULT_QUALITY):
         self.URL = "https://yesdownloader.com/en1/"
-        self.driver =  webdriver.Chrome(config.chromedriver_path)
         self.quality = quality
 
     def get_link(self):
@@ -23,6 +22,7 @@ class SavePornNet(object):
         return self.filename
 
     def get_metadata(self, link):
+        self.driver =  webdriver.Chrome(config.chromedriver_path)
         self.driver.get(self.URL)
 
         box = self.driver.find_element_by_id("ytUrl")

@@ -1,5 +1,7 @@
 import pandas as pd
 import sys
+
+from downloaders.downloadmanager import DownloadManager
 from validators import Validator
 
 class Page(object):
@@ -40,3 +42,9 @@ class Page(object):
         with open(self.channel_name + "-links.txt", "w") as outfile:
             outfile.write(out_text)
         return self.links
+
+    def download_videos(self):
+        man = DownloadManager(quality = "480")
+
+        for link in self.links:
+            man.download(link)
