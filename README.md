@@ -26,6 +26,7 @@ man.download(link = "<video-link>")
 ## Features
 - get links of all videos from a channel page
 - download videos directly from the link
+- option to select video download quality
 
 ## TODO
 - support for recognizing different link types(channels, playlists, etc.)
