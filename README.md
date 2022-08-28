@@ -29,6 +29,5 @@ man.download(link = "<video-link>", quality = "720")
 - option to select video download quality
 
 ## TODO
-- support for recognizing different link types(channels, playlists, etc.)
 - Add multiple downloaders
 - support for parallel file download
