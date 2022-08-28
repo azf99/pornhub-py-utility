@@ -1,11 +1,26 @@
 from selenium import webdriver
+import pandas as pd
 import time
 import config
 
 class SavePornNet(object):
-    def __init__(self):
+    def __init__(self, quality = config.DEFAULT_QUALITY):
         self.URL = "https://yesdownloader.com/en1/"
         self.driver =  webdriver.Chrome(config.chromedriver_path)
+        self.quality = quality
+
+    def get_link(self):
+        quality_matrix = pd.read_html(self.driver.find_element_by_xpath("//*[@id='dtable']").get_attribute('innerHTML'))[0]
+        quality_matrix = quality_matrix.astype("string")
+        index = quality_matrix[quality_matrix[0] == self.quality].index.values
+        if len(index) == 0:
+            print("Requested quality not found, downloading {}p instead".format(config.DEFAULT_QUALITY))
+            indexdefault = quality_matrix[quality_matrix[0] == config.DEFAULT_QUALITY].index.values
+            return self.driver.find_element_by_xpath("//*[@id='dtable']/table/tbody/tr[{}]/td[3]/a".format(indexdefault[0])).get_attribute("href")
+        return self.driver.find_element_by_xpath("//*[@id='dtable']/table/tbody/tr[{}]/td[3]/a".format(index[0])).get_attribute("href")
+
+    def get_filename(self):
+        return self.filename
 
     def get_metadata(self, link):
         self.driver.get(self.URL)
@@ -15,9 +30,11 @@ class SavePornNet(object):
 
         submitButton = self.driver.find_element_by_name("submitForm")
         submitButton.click()
+        time.sleep(2)
 
-        forwardlink = self.driver.find_elements_by_xpath("//*[@id='dtable']/table/tbody/tr[3]/td[3]/a")[0].get_attribute("href")
-        filename = self.driver.find_element_by_class_name("o2").text.strip() + ".mp4"
+        forwardlink = self.get_link()
+        
+        self.filename = self.driver.find_element_by_class_name("o2").text.strip() + ".mp4"
 
         self.driver.get(forwardlink)
 
@@ -29,4 +46,4 @@ class SavePornNet(object):
         downlink = self.driver.current_url
         self.driver.quit()
 
-        return downlink, filename
+        return downlink, self.filename

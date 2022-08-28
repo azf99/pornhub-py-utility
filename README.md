@@ -20,12 +20,13 @@ Open a python shell from the cloned directory
 from downloaders.downloadmanager import DownloadManager
 
 man = DownloadManager(save_path = "<path-to-save-folder>")
-man.download(link = "<video-link>")
+man.download(link = "<video-link>", quality = "720")
 ```
 
 ## Features
 - get links of all videos from a channel page
 - download videos directly from the link
+- option to select video download quality
 
 ## TODO
 - support for recognizing different link types(channels, playlists, etc.)
