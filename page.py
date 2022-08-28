@@ -13,11 +13,11 @@ class Page(object):
         self.channel_name = self.URL.split("/")[-1].strip("/")
 
     def get_links_from_page(self):
-        elems = self.driver.find_elements_by_xpath("//a[@href]")
+        elems = self.driver.find_elements_by_xpath("//*[@class='videoUList clear-both']/ul/li/div/div/a")
         for elem in elems:
             href = elem.get_attribute("href")
             if "view_video.php?viewkey=" in href:
-                self.links.append(href)
+                self.links.append(href.split("&pkey")[0])
         return self.links
 
     def get_all_links(self):
@@ -29,7 +29,7 @@ class Page(object):
             print(self.driver.title)
             if self.driver.title == "Page Not Found":
                 print("Stopping")
-                return
+                break
             self.get_links_from_page()
         df = pd.Series(self.links)
         self.links = df.drop_duplicates().tolist()

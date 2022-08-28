@@ -1,4 +1,5 @@
 chromedriver.exe
 __pycache__/
 test*
+*.mp4
 *-links.txt

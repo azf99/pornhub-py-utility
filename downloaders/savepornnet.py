@@ -46,4 +46,4 @@ class SavePornNet(object):
         downlink = self.driver.current_url
         self.driver.quit()
 
-        return downlink, self.filename
+        return downlink, "_".join(self.filename.replace(":", "").split())
