@@ -23,5 +23,5 @@ driver.quit()
 
 from downloaders.downloadmanager import DownloadManager
 
-man = DownloadManager()
+man = DownloadManager(quality = "480")
 man.download(links[0])

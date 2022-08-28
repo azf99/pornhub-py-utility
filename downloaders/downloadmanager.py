@@ -3,13 +3,13 @@ import os
 
 from .savepornnet import SavePornNet
 from progressbars.ProgressBar import show_progress
-
+import config
 
 class DownloadManager(object):
-    def __init__(self, save_path = "./", choice = "saveporn"):
+    def __init__(self, quality = config.DEFAULT_QUALITY, save_path = "./", choice = "saveporn"):
         self.save_path = save_path
         if choice == "saveporn":
-            self.downloader = SavePornNet()
+            self.downloader = SavePornNet(quality = quality)
     
     def download(self, link = "https://www.pornhub.org/view_video.php?viewkey=ph62e6e8b768ae2"):
         downlink, filename = self.downloader.get_metadata(link)

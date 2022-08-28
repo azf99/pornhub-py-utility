@@ -20,7 +20,7 @@ Open a python shell from the cloned directory
 from downloaders.downloadmanager import DownloadManager
 
 man = DownloadManager(save_path = "<path-to-save-folder>")
-man.download(link = "<video-link>")
+man.download(link = "<video-link>", quality = "720")
 ```
 
 ## Features
