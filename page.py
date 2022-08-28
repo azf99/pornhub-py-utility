@@ -1,5 +1,6 @@
 import pandas as pd
-import re
+import sys
+from validators import Validator
 
 class Page(object):
     def __init__(self, url, driver, pageNum, maxPages):
@@ -8,7 +9,12 @@ class Page(object):
         self.pageNum = pageNum
         self.maxPages = maxPages
         self.links = []
-        self.channel_name = self.url.split("/")[-1].strip("/")
+        self.type = Validator(self.URL).run()
+        self.channel_name = self.URL.split("/")[-1].strip("/")
+
+        if self.type != "pornstar":
+            print("This is not a pornstar url. Currently only pornstar links are supported.")
+            sys.exit()
 
     def get_links_from_page(self):
         elems = self.driver.find_elements_by_xpath("//a[@href]")
@@ -35,6 +41,6 @@ class Page(object):
 
         out_text = "\n".join(self.links)
 
-        with open(self.channel_name + ".txt", "w") as outfile:
+        with open(self.channel_name + "-links.txt", "w") as outfile:
             outfile.write(out_text)
         return self.links
