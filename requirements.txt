@@ -4,4 +4,5 @@ progressbar
 requests
 bs4
 lxml
-htm5lib
+html5lib
+tqdm
