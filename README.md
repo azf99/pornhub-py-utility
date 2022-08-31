@@ -14,6 +14,23 @@ python main.py <pornhub-channel-url>
 ```
 This will fetch a list of every single video on the channel
 
+For additional features, do
+```
+>> python main.py -h
+
+usage: main.py [-h] -u URL [-q QUALITY] [-s SAVE_PATH]
+
+Pornhub downloader utility
+
+optional arguments:
+  -h, --help            show this help message and exit
+  -u URL, --url URL     the URL of the channel
+  -q QUALITY, --quality QUALITY
+                        the video quality(240, 480, 720, etc.)
+  -s SAVE_PATH, --save_path SAVE_PATH
+                        the path to save the videos
+```
+
 ### How to download single video
 Open a python shell from the cloned directory
 ```
