@@ -1,5 +1,5 @@
 # Pornhub python utility
-A python based utility tool to do various activities on your favourite website. No more manual, tiring work requiring hours to get your favourite content. Now eveything at the click of a button.
+A python based utility tool to do various activities on your favourite website. No more manual, tiring work requiring hours to get your favourite content. Now everything at the click of a button.
 
 ## Setup
 ```
@@ -27,7 +27,8 @@ man.download(link = "<video-link>", quality = "720")
 - get links of all videos from a channel page
 - download videos directly from the link
 - option to select video download quality
+- support for concurrent file download to get faster download upto 8 times as that of a browser(if bandwidth is not a bottleneck)
 
 ## TODO
 - Add multiple downloaders
-- support for parallel file download
+
