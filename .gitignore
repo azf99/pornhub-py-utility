@@ -3,3 +3,4 @@ __pycache__/
 test*
 *.mp4
 *-links.txt
+tmp
