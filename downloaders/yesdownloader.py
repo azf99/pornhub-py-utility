@@ -3,7 +3,7 @@ import pandas as pd
 import time
 import config
 
-class SavePornNet(object):
+class YesDownloader(object):
     def __init__(self, quality = config.DEFAULT_QUALITY):
         self.URL = "https://yesdownloader.com/en1/"
         self.quality = quality
@@ -14,9 +14,9 @@ class SavePornNet(object):
         index = quality_matrix[quality_matrix[0] == self.quality].index.values
         if len(index) == 0:
             print("Requested quality not found, downloading {}p instead".format(config.DEFAULT_QUALITY))
-            indexdefault = quality_matrix[quality_matrix[0] == config.DEFAULT_QUALITY].index.values
-            return self.driver.find_element_by_xpath("//*[@id='dtable']/table/tbody/tr[{}]/td[3]/a".format(indexdefault[0])).get_attribute("href")
-        return self.driver.find_element_by_xpath("//*[@id='dtable']/table/tbody/tr[{}]/td[3]/a".format(index[0])).get_attribute("href")
+            indexdefault = quality_matrix[quality_matrix[0] == config.DEFAULT_QUALITY].index.values[0] + 1
+            return self.driver.find_element_by_xpath("//*[@id='dtable']/table/tbody/tr[{}]/td[3]/a".format(indexdefault)).get_attribute("href")
+        return self.driver.find_element_by_xpath("//*[@id='dtable']/table/tbody/tr[{}]/td[3]/a".format(index[0] + 1)).get_attribute("href")
 
     def get_filename(self):
         return self.filename
