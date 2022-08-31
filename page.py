@@ -5,14 +5,19 @@ from downloaders.downloadmanager import DownloadManager
 from validators import Validator
 
 class Page(object):
-    def __init__(self, url, driver, pageNum, maxPages):
+    def __init__(self, url, driver, pageNum, maxPages, quality, save_path):
         self.URL = url
         self.driver = driver
         self.pageNum = pageNum
         self.maxPages = maxPages
+        self.quality = quality
         self.links = []
         self.type = Validator(self.URL).run()
         self.channel_name = self.URL.split("/")[-1].strip("/")
+        if save_path == "default":
+            self.save_path = "./{}/".format(self.channel_name)
+        else:
+            self.save_path = save_path
 
     def get_links_from_page(self):
         elems = self.driver.find_elements_by_xpath("//*[@class='videoUList clear-both']/ul/li/div/div/a")
@@ -44,7 +49,7 @@ class Page(object):
         return self.links
 
     def download_videos(self):
-        man = DownloadManager(quality = "480")
+        man = DownloadManager(quality = self.quality, save_path = self.save_path)
 
         for link in self.links:
             man.download(link)
